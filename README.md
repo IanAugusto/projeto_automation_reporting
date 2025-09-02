@@ -315,9 +315,7 @@ Para dúvidas ou problemas:
 
 ## 🔄 Atualizações Futuras
 
-- [ ] Interface web para configuração
 - [ ] Suporte a mais formatos de dados
-- [ ] Integração com bancos de dados NoSQL
 - [ ] Alertas por email/Slack
 - [ ] Dashboard em tempo real
 - [ ] Machine Learning avançado
