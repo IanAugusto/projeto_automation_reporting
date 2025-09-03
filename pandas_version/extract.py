@@ -15,12 +15,12 @@ logger = logging.getLogger(__name__)
 class DataExtractor:
     """Classe para extração de dados usando pandas"""
     
-    def __init__(self, data_path: str = "data/"):
+    def __init__(self, data_path: str = "data/raw/"):
         """
         Inicializa o extrator de dados
         
         Args:
-            data_path (str): Caminho para o diretório de dados
+            data_path (str): Caminho para o diretório de dados raw
         """
         self.data_path = data_path
         self.ensure_data_directory()
@@ -140,8 +140,8 @@ def main():
             'Date': pd.date_range('2024-01-01', periods=100),
             'Time': pd.date_range('2024-01-01 08:00:00', periods=100, freq='H').strftime('%H:%M:%S')
         })
-        sample_data.to_csv('data/Coffe_sales.csv', index=False)
-        print("Arquivo de exemplo criado: data/Coffe_sales.csv")
+        sample_data.to_csv('data/raw/Coffe_sales.csv', index=False)
+        print("Arquivo de exemplo criado: data/raw/Coffe_sales.csv")
 
 if __name__ == "__main__":
     main()

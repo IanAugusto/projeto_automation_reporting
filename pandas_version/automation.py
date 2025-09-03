@@ -58,10 +58,11 @@ class DataPipeline:
     def get_default_config(self) -> Dict:
         """Retorna configuração padrão"""
         return {
-            'data_path': 'data/',
+            'data_path': 'data/raw/',
+            'processed_path': 'data/processed/',
             'reports_path': 'reports/',
-            'input_file': 'sales_data.csv',
-            'output_file': 'processed_sales_data.csv',
+            'input_file': 'Coffe_sales.csv',
+            'output_file': 'Coffe_sales_with_anomalies.csv',
             'anomaly_threshold': 0.1,
             'enable_anomaly_detection': True,
             'enable_reporting': True,
@@ -73,6 +74,7 @@ class DataPipeline:
         """Garante que todos os diretórios necessários existem"""
         directories = [
             self.config['data_path'],
+            self.config['processed_path'],
             self.config['reports_path'],
             'logs/'
         ]

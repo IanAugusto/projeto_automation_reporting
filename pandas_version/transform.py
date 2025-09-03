@@ -225,7 +225,7 @@ def main():
     # Exemplo de uso
     try:
         # Carrega dados de exemplo
-        df = pd.read_csv('data/Coffe_sales.csv')
+        df = pd.read_csv('data/raw/Coffe_sales.csv')
         print(f"Dados carregados. Shape: {df.shape}")
         
         # Transforma os dados

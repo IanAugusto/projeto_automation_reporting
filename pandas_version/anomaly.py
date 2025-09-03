@@ -272,7 +272,7 @@ def main():
     
     try:
         # Carrega dados
-        df = pd.read_csv('data/Coffe_sales.csv')
+        df = pd.read_csv('data/raw/Coffe_sales.csv')
         print(f"Dados carregados. Shape: {df.shape}")
         
         # Detecta outliers estatísticos
@@ -323,8 +323,8 @@ def main():
             print(anomaly_examples.to_string(index=False))
         
         # Salva dados com anomalias detectadas
-        df_with_anomalies.to_csv('data/Coffe_sales_with_anomalies.csv', index=False)
-        print("\nDados com anomalias salvos em: data/Coffe_sales_with_anomalies.csv")
+        df_with_anomalies.to_csv('data/processed/Coffe_sales_with_anomalies.csv', index=False)
+        print("\nDados com anomalias salvos em: data/processed/Coffe_sales_with_anomalies.csv")
         
         # Exemplo de visualização (opcional - descomente para ver gráficos)
         # if 'money_outlier' in df_with_anomalies.columns:

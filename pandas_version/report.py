@@ -465,7 +465,7 @@ def main():
     
     try:
         # Carrega dados
-        df = pd.read_csv('data/Coffe_sales.csv')
+        df = pd.read_csv('data/raw/Coffe_sales.csv')
         print(f"Dados carregados. Shape: {df.shape}")
         
         # Gera relatório completo
