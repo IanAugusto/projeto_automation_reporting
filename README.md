@@ -1,23 +1,18 @@
 # Projeto de Automação de Relatórios
 
-Este projeto implementa um pipeline completo de análise de dados com duas versões: uma usando **Pandas** para datasets menores e outra usando **Apache Spark** para processamento de big data.
+Este projeto implementa um pipeline completo de análise de dados usando **Pandas** para processamento eficiente de datasets de vendas de café.
 
 ## 📁 Estrutura do Projeto
 
 ```
 projeto_automation_reporting/
 │
-├── data/                    # Dados brutos (CSV de vendas, etc.)
+├── data/                    # Dados do projeto
+│   ├── raw/                # Dados originais (CSV de vendas)
+│   └── processed/          # Dados processados (com anomalias detectadas)
 ├── reports/                 # Relatórios gerados
 │
-├── pandas_version/          # Scripts usando Pandas
-│   ├── extract.py          # Extração de dados
-│   ├── transform.py        # Transformação e limpeza
-│   ├── anomaly.py          # Detecção de anomalias
-│   ├── report.py           # Geração de relatórios
-│   └── automation.py       # Automação do pipeline
-│
-├── spark_version/           # Scripts usando PySpark
+├── pandas_version/          # Scripts principais do projeto
 │   ├── extract.py          # Extração de dados
 │   ├── transform.py        # Transformação e limpeza
 │   ├── anomaly.py          # Detecção de anomalias
@@ -49,27 +44,16 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Instale o Apache Spark (apenas para versão Spark)
-```bash
-# Baixe o Spark do site oficial: https://spark.apache.org/downloads.html
-# Configure as variáveis de ambiente SPARK_HOME e PATH
-```
 
 ## 📊 Funcionalidades
 
-### Versão Pandas
-- **Ideal para**: Datasets até 1GB, análises rápidas
+- **Ideal para**: Datasets de vendas de café, análises rápidas e eficientes
 - **Características**: 
-  - Processamento em memória
+  - Processamento em memória com Pandas
   - Interface simples e intuitiva
-  - Ideal para prototipagem
-
-### Versão Spark
-- **Ideal para**: Big data, datasets > 1GB
-- **Características**:
-  - Processamento distribuído
-  - Escalabilidade horizontal
-  - Otimizações automáticas
+  - Detecção automática de anomalias
+  - Geração de relatórios visuais
+  - Automação completa do pipeline
 
 ## 🔧 Módulos
 
@@ -104,22 +88,11 @@ pip install -r requirements.txt
 
 ## 🎯 Como Usar
 
-### Execução Rápida - Versão Pandas
+### Execução Rápida
 
 ```bash
 # Executa o pipeline completo uma vez
 cd pandas_version
-python automation.py --mode once
-
-# Executa em modo agendado (diário às 9h)
-python automation.py --mode schedule
-```
-
-### Execução Rápida - Versão Spark
-
-```bash
-# Executa o pipeline completo uma vez
-cd spark_version
 python automation.py --mode once
 
 # Executa em modo agendado (diário às 9h)
@@ -128,26 +101,8 @@ python automation.py --mode schedule
 
 ### Execução Individual dos Módulos
 
-#### Pandas
 ```bash
 cd pandas_version
-
-# 1. Extração
-python extract.py
-
-# 2. Transformação
-python transform.py
-
-# 3. Detecção de anomalias
-python anomaly.py
-
-# 4. Geração de relatórios
-python report.py
-```
-
-#### Spark
-```bash
-cd spark_version
 
 # 1. Extração
 python extract.py
@@ -167,10 +122,11 @@ python report.py
 ### Arquivo de Configuração (JSON)
 ```json
 {
-    "data_path": "data/",
+    "data_path": "data/raw/",
+    "processed_path": "data/processed/",
     "reports_path": "reports/",
-    "input_file": "sales_data.csv",
-    "output_file": "processed_sales_data.csv",
+    "input_file": "Coffe_sales.csv",
+    "output_file": "Coffe_sales_with_anomalies.csv",
     "anomaly_threshold": 0.1,
     "enable_anomaly_detection": true,
     "enable_reporting": true,
@@ -186,34 +142,34 @@ python automation.py --mode once --config config.json
 
 ## 📈 Exemplo de Dados
 
-O projeto inclui geração automática de dados de exemplo com:
-- **Vendas**: ID, data, produto, quantidade, preço, total
-- **Período**: 1000 transações distribuídas ao longo do tempo
-- **Produtos**: 5 produtos diferentes
-- **Padrões**: Variações sazonais e anomalias
+O projeto inclui geração automática de dados de exemplo de vendas de café com:
+- **Vendas**: Hora, tipo de pagamento, valor, nome do café, período do dia
+- **Período**: 1000+ transações distribuídas ao longo do tempo
+- **Produtos**: 5 tipos diferentes de café (Latte, Americano, Hot Chocolate, Cappuccino, Espresso)
+- **Padrões**: Variações sazonais, horários de pico e anomalias
 
 ## 📊 Relatórios Gerados
 
 ### PDF
-- Resumo executivo
+- Resumo executivo de vendas de café
 - Gráficos de vendas temporais
-- Top produtos
-- Distribuição de vendas
-- Análise de categorias
+- Top produtos de café
+- Distribuição de vendas por período
+- Análise de categorias de café
 
 ### Excel
-- Dados originais
-- Resumo de métricas
-- Top produtos
-- Vendas mensais
-- Estatísticas por categoria
+- Dados originais de vendas
+- Resumo de métricas de vendas
+- Top produtos de café
+- Vendas por período do dia
+- Estatísticas por tipo de café
 
 ### Imagens
-- Gráfico de vendas ao longo do tempo
-- Top 10 produtos
-- Distribuição de valores
-- Heatmap produto x mês
-- Gráfico de pizza por categoria
+- Gráfico de vendas de café ao longo do tempo
+- Top produtos de café
+- Distribuição de valores de venda
+- Heatmap produto x período do dia
+- Gráfico de distribuição de vendas
 
 ## 🔍 Detecção de Anomalias
 
@@ -242,8 +198,7 @@ O projeto inclui geração automática de dados de exemplo com:
 ## 🚨 Logs e Monitoramento
 
 ### Arquivos de Log
-- `automation.log` - Logs da versão Pandas
-- `spark_automation.log` - Logs da versão Spark
+- `automation.log` - Logs do pipeline principal
 
 ### Informações Registradas
 - Início e fim de cada etapa
@@ -256,19 +211,11 @@ O projeto inclui geração automática de dados de exemplo com:
 
 ### Estrutura de Classes
 
-#### Pandas
-- `DataExtractor`: Extração de dados
-- `DataTransformer`: Transformação de dados
-- `AnomalyDetector`: Detecção de anomalias
-- `ReportGenerator`: Geração de relatórios
-- `DataPipeline`: Orquestração do pipeline
-
-#### Spark
-- `SparkDataExtractor`: Extração com Spark
-- `SparkDataTransformer`: Transformação com Spark
-- `SparkAnomalyDetector`: Detecção com Spark
-- `SparkReportGenerator`: Relatórios com Spark
-- `SparkDataPipeline`: Pipeline Spark
+- `DataExtractor`: Extração de dados de vendas de café
+- `DataTransformer`: Transformação e limpeza de dados
+- `AnomalyDetector`: Detecção de anomalias nas vendas
+- `ReportGenerator`: Geração de relatórios visuais
+- `DataPipeline`: Orquestração completa do pipeline
 
 ### Extensibilidade
 
@@ -290,7 +237,6 @@ O projeto foi projetado para ser facilmente extensível:
 - Python 3.10+
 - 8GB RAM
 - 5GB espaço em disco
-- Apache Spark 3.4+ (para versão Spark)
 
 ## 🤝 Contribuição
 
